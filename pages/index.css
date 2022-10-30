@@ -5,7 +5,7 @@
 @import url(../blocks/page/page.css);
 
 @import url(../blocks/header/header.css);
-@import url(../blocks/header/header__logo/header__logo.css);
+@import url(../blocks/header/__logo/header__logo.css);
 
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
@@ -22,9 +22,14 @@
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__like-button/element__like-button.css);
 
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/edit-form/edit-form.css);
+@import url(../blocks/edit-form/__title/edit-form__title.css);
+@import url(../blocks/edit-form/__text-input/edit-form__text-input.css);
+@import url(../blocks/edit-form/__close-button/edit-form__close-button.css);
+@import url(../blocks/edit-form/__submit-button/edit-form__submit-button.css);
+
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
 
-* {
-  border: 1px red solid;
-}
+@import url(../blocks/overlay/overlay.css);

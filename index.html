@@ -16,59 +16,69 @@
           <img class="profile__avatar" src="images/Jack-Iv-Kusto.svg" alt="Фотография Жак-Ив Кусто">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="button profile__edit-button"></button>
+            <button type="button" class="button profile__edit-button"></button>
             <p class="profile__description">Исследователь Океана</p>
           </div>
-          <button class="button profile__add-button"></button>
+          <button type="button" class="button profile__add-button"></button>
         </section>
         <section class="elements">
           <div class="element">
             <img class="element__image" src="https://images.unsplash.com/photo-1538819285938-6a9b4eda500b" alt="Карачаевск фотография">
             <div class="element__body">
               <h5 class="element__title">Карачаевск</h5>
-              <button class="element__like-button"></button>
+              <button type="button" class="element__like-button"></button>
             </div>
           </div>
           <div class="element">
             <img class="element__image" src="https://images.unsplash.com/photo-1551481916-9ba5cccca0fd" alt="Эльбрус фотография">
             <div class="element__body">
               <h5 class="element__title">Гора Эльбрус</h5>
-              <button class="element__like-button"></button>
+              <button type="button" class="element__like-button"></button>
             </div>
           </div>
           <div class="element">
             <img class="element__image" src="https://images.unsplash.com/photo-1556780183-f523058dc29b" alt="Домбай фотография">
             <div class="element__body">
               <h5 class="element__title">Домбай</h5>
-              <button class="element__like-button"></button>
+              <button type="button" class="element__like-button"></button>
             </div>
           </div>
           <div class="element">
             <img class="element__image" src="https://images.unsplash.com/photo-1551481916-9ba5cccca0fd" alt="Эльбрус фотография">
             <div class="element__body">
               <h5 class="element__title">Гора Эльбрус</h5>
-              <button class="element__like-button"></button>
+              <button type="button" class="element__like-button"></button>
             </div>
           </div>
           <div class="element">
             <img class="element__image" src="https://images.unsplash.com/photo-1556780183-f523058dc29b" alt="Домбай фотография">
             <div class="element__body">
               <h5 class="element__title">Домбай</h5>
-              <button class="element__like-button"></button>
+              <button type="button" class="element__like-button"></button>
             </div>
           </div>
           <div class="element">
             <img class="element__image" src="https://images.unsplash.com/photo-1538819285938-6a9b4eda500b" alt="Карачаевск фотография">
             <div class="element__body">
               <h5 class="element__title">Карачаево-Черкесия</h5>
-              <button class="element__like-button"></button>
+              <button type="button" class="element__like-button"></button>
             </div>
           </div>
         </section>
+        <div class="popup">
+          <form action="" class="edit-form" method="POST" enctype="multipart/form-data">
+            <h2 class="edit-form__title">Редактировать профиль</h2>
+            <input type="text" class="edit-form__text-input" name="name" required>
+            <input type="text" class="edit-form__text-input" name="description" required>
+            <button type="button" class="button edit-form__close-button"></button>
+            <button type="submit" class="button edit-form__submit-button">Сохранить</button>
+          </form>
+        </div>
       </main>
       <footer class="footer">
         <p class="footer__text">&copy; 2020 Mesto Russia</p>
       </footer>
     </div>
+    <script src="scripts/script.js"></script>
   </body>
 </html>

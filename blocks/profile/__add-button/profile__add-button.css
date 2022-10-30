@@ -1,0 +1,16 @@
+.profile__add-button {
+  cursor: pointer;
+  height: 50px;
+  color: white;
+  border: 2px white solid;
+  border-radius: 2px;
+  background-color: black;
+  background: transparent url(../../../images/plus-sign.svg) no-repeat center;
+  width: 150px;
+}
+
+@media screen and (max-width: 618px) {
+  .profile__add-button {
+    width: 100%;
+  }
+}

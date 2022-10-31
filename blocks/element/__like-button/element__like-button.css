@@ -2,9 +2,9 @@
   background: transparent url('../../../images/like-btn.svg');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
-  width: 22px;
-  height: 19px;
+  background-clip: content-box;
+  width: 50px;
+  height: 25px;
   cursor: pointer;
   border: none;
 }

@@ -1,17 +1,15 @@
-# Проект: Место
+### Веб-проект "Mesto"
+#### Ссылка на сайт https://fr0stfree.github.io/Mesto/
 
-### Обзор
+Проект "Mest" - однострочный сайт написанный с помощью HTML, CSS и JavaScript по методологии БЭМ. Подключены open-source шрифт 'Inter'. Фотографии взяты с сайта unsplash.com. Сайт имеет адаптивно-отзывчивую верстку, которая подходит для всех устройств.
 
-* Figma
-* Картинки
+Функционал сайта:
+- Обновление описания и имени профиля с помощью формы.
 
-**Figma**
-
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-
-**Картинки**
-
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+---
+### Использованные технологии
+1. [HTML](https://ru.wikipedia.org/wiki/HTML)
+2. [CSS](https://ru.wikipedia.org/wiki/CSS)
+3. [JavaScript](https://ru.wikipedia.org/wiki/JavaScript)
+4. [Inter Fonts](https://rsms.me/inter/)
+---

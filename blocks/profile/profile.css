@@ -2,12 +2,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 36px auto 47px;
+  margin: 39px auto 47px;
   max-width: min(880px, calc(100% - 2 * 19px));
 }
 
 @media screen and (max-width: 618px) {
   .profile {
     flex-direction: column;
+    margin-top: 45px;
+    margin-bottom: 35px;
   }
 }
+

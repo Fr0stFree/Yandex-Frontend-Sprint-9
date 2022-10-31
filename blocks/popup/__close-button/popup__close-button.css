@@ -17,6 +17,6 @@
   .popup__close-button {
     top: calc(50% - 322px / 2 - 35px);
     left: calc(50% + 282px / 2 - 20px);
-    transform: scale(.6)
+    transform: scale(.6);
   }
 }

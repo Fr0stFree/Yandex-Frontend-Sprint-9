@@ -1,7 +1,9 @@
-.edit-form__input_type_text {
-  color: black;
+.text-input {
+  color: rgba(0, 0, 0, 1);
   font-size: 14px;
   line-height: 17px;
+  font-style: normal;
+  font-weight: 400;
   margin-bottom: 30px;
   padding-bottom: 9px;
   border-bottom: 1px solid rgba(0, 0, 0, .2);

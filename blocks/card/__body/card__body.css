@@ -1,6 +1,6 @@
-.element__body {
+.card__body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 21px 7px 26px 21px;
+  margin: 25px 19px auto 21px;
 }

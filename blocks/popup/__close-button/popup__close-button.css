@@ -2,21 +2,21 @@
   position: absolute;
   top: calc(50% - 430px / 2 + 12px);
   left: calc(50% + 330px / 2 + 60px);
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   background-color: transparent;
   background-image: url(../../../images/close-sign.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 32px 32px;
+  background-size: contain;
   cursor: pointer;
   border: none;
 }
 
 @media screen and (max-width: 618px) {
   .popup__close-button {
-    top: calc(50% - 322px / 2 - 35px);
-    left: calc(50% + 282px / 2 - 20px);
-    transform: scale(.6);
+    top: calc(50% - 322px / 2 - 42px);
+    left: calc(50% + 282px / 2 - 27px);
+    transform: scale(.65);
   }
 }

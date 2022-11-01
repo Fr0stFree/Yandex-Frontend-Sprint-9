@@ -1,11 +1,4 @@
 .elements {
   max-width: min(880px, calc(100% - 2 * 19px));
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 282px);
-  column-gap: 17px;
-  row-gap: 20px;
-  justify-content: center;
-  list-style: none;
   margin: 0 auto;
-  padding: 0;
 }

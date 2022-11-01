@@ -4,18 +4,17 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  color: white;
+  color: rgba(255, 255, 255, 1);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 300px;
+  width: 100%;
 }
 
 
 @media screen and (max-width: 618px) {
   .profile__description {
-    padding-right: 27px;
-    margin-top: 3px;
+    margin-top: 9px;
     font-size: 14px;
     line-height: 17px;
     text-align: center;

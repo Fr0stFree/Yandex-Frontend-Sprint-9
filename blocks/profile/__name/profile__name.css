@@ -4,12 +4,10 @@
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
-  color: white;
-  display: inline-block;
+  color: rgba(255, 255, 255, 1);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 300px;
 }
 
 @media screen and (max-width: 618px) {

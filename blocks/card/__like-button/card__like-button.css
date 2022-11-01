@@ -1,10 +1,14 @@
-.element__like-button {
+.card__like-button {
   background: transparent url('../../../images/like-btn.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-clip: content-box;
-  width: 50px;
-  height: 25px;
+  background-size: contain;
+  width: 22px;
+  height: 19px;
   cursor: pointer;
   border: none;
+  padding: 0;
+  /* if its collide with another element it must be visible */
+
 }

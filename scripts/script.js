@@ -1,30 +1,42 @@
-let formElement = document.querySelector('.edit-form');
 let popupElement = document.querySelector('.popup');
+let formElement = popupElement.querySelector('.popup__form');
 let nameElement = document.querySelector('.profile__name');
 let descriptionElement = document.querySelector('.profile__description');
 let popupOpenButton = document.querySelector('.profile__edit-button');
-let nameInputElement = formElement.querySelector('.edit-form__input_type_text[name="name"]');
-let descriptionInputElement = formElement.querySelector('.edit-form__input_type_text[name="description"]');
+let nameInputElement = formElement.querySelector('.popup__input_type_name');
+let descriptionInputElement = formElement.querySelector('.popup__input_type_description');
 let popupCloseButton = popupElement.querySelector('.popup__close-button');
 
 
 function openForm() {
-  nameInputElement.value = nameElement.textContent;
-  descriptionInputElement.value = descriptionElement.textContent;
-  _toggleForm();
+  fillForm();
+  showPopup();
 }
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  nameElement.textContent = nameInputElement.value;
-  descriptionElement.textContent = descriptionInputElement.value;
-  _toggleForm();
+  setProfileInfo(nameInputElement.value, descriptionInputElement.value);
+  hidePopup();
 }
 
-function _toggleForm() {
-  popupElement.classList.toggle('popup_opened');
+function fillForm() {
+  nameInputElement.value = nameElement.textContent;
+  descriptionInputElement.value = descriptionElement.textContent;
+}
+
+function setProfileInfo(name, description) {
+  nameElement.textContent = name;
+  descriptionElement.textContent = description;
+}
+
+function showPopup() {
+  popupElement.classList.add('popup_opened');
+}
+
+function hidePopup() {
+  popupElement.classList.remove('popup_opened');
 }
 
 popupOpenButton.addEventListener('click', openForm);
-popupCloseButton.addEventListener('click', _toggleForm);
+popupCloseButton.addEventListener('click', hidePopup);
 formElement.addEventListener('submit', formSubmitHandler);

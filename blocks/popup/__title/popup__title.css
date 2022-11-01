@@ -1,4 +1,5 @@
-.edit-form__title {
+.popup__title {
+  color: rgba(0, 0, 0, 1);
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -8,7 +9,7 @@
 }
 
 @media screen and (max-width: 618px) {
-  .edit-form__title {
+  .popup__title {
     font-size: 18px;
     line-height: 22px;
     margin: 25px 0 75px;

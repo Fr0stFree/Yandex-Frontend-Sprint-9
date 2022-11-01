@@ -2,7 +2,7 @@
   padding-top: 45px;
   margin: 0 auto 0;
   padding-bottom: 41px;
-  border-bottom: 1px solid rgba(84, 84, 84, .7);;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
   max-width: min(880px, calc(100% - 2 * 19px));
 }
 

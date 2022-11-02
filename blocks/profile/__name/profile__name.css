@@ -9,12 +9,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   grid-area: name;
-  max-width: 294px;
+  width: 294px;
 }
 
 @media screen and (max-width: 618px) {
   .profile__name {
     font-size: 27px;
     line-height: 33px;
+    width: 189px;
   }
 }

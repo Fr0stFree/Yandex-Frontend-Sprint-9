@@ -9,11 +9,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   grid-area: description;
+  width: 336px;
 }
 
 
 @media screen and (max-width: 618px) {
   .profile__description {
+    width: 245px;
     font-size: 14px;
     line-height: 17px;
     text-align: center;

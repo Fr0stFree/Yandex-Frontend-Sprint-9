@@ -9,15 +9,15 @@
   width: 150px;
 }
 
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 800px) {
   .profile__add-button {
-    align-self: flex-end;
+    margin: 0 auto;
   }
 }
 
 @media screen and (max-width: 618px) {
   .profile__add-button {
     width: min(282px, 100%);
-    align-self: inherit;
+    background-size: 16px 16px;
   }
 }

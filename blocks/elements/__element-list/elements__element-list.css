@@ -1,9 +1,7 @@
 .elements__element-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
-  grid-auto-rows: 361px;
-  column-gap: 17px;
-  row-gap: 20px;
+  gap: 20px 17px;
   justify-content: center;
   list-style: none;
   padding: 0;

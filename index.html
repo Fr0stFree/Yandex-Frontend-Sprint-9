@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Путешествие по России</title>
+    <title lang="en">Mesto</title>
     <link rel="stylesheet" href="./pages/index.css">
   </head>
   <body>
@@ -15,80 +15,78 @@
         <section class="profile">
           <img class="profile__avatar" src="./images/Jack-Iv-Kusto.svg" alt="Фотография пользователя">
           <div class="profile__info">
-            <div class="profile__heading">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button type="button" class="button profile__edit-button" aria-label="Редактировать"></button>
-            </div>
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button type="button" class="button profile__edit-button" aria-label="Редактировать пользовательскую информацию"></button>
             <p class="profile__description">Исследователь океана</p>
           </div>
-          <button type="button" class="button profile__add-button" aria-label="Добавить"></button>
+          <button type="button" class="button profile__add-button" aria-label="Добавить фотографию"></button>
         </section>
         <section class="elements">
           <ul class="elements__element-list">
             <li class="elements__element">
-              <div class="card">
+              <article class="card">
                 <img class="card__image" src="https://images.unsplash.com/photo-1538819285938-6a9b4eda500b" alt="Карачаевск фотография">
                 <div class="card__body">
                   <h2 class="card__title">Карачаевск</h2>
-                  <button type="button" class="card__like-button" aria-label="Лайкнуть"></button>
+                  <button type="button" class="card__like-button" aria-label="Поставить лайк под фотографией"></button>
                 </div>
-              </div>
+              </article>
             </li>
             <li class="elements__element">
-              <div class="card">
+              <article class="card">
                 <img class="card__image" src="https://images.unsplash.com/photo-1521311587563-6a3fb9fbaff7" alt="Эльбрус фотография">
                 <div class="card__body">
                   <h2 class="card__title">Гора Эльбрус</h2>
-                  <button type="button" class="card__like-button" aria-label="Лайкнуть"></button>
+                  <button type="button" class="card__like-button" aria-label="Поставить лайк под фотографией"></button>
                 </div>
-              </div>
+              </article>
             </li>
             <li class="elements__element">
-              <div class="card">
+              <article class="card">
                 <img class="card__image" src="https://images.unsplash.com/photo-1556780183-f523058dc29b" alt="Домбай фотография">
                 <div class="card__body">
                   <h2 class="card__title">Домбай</h2>
-                  <button type="button" class="card__like-button" aria-label="Лайкнуть"></button>
+                  <button type="button" class="card__like-button" aria-label="Поставить лайк под фотографией"></button>
                 </div>
-              </div>
+              </article>
             </li>
             <li class="elements__element">
-              <div class="card">
+              <article class="card">
                 <img class="card__image" src="https://images.unsplash.com/photo-1602256976419-c82585fe73a7" alt="Байкал фотография">
                 <div class="card__body">
                   <h2 class="card__title">Озеро Байкал</h2>
-                  <button type="button" class="card__like-button" aria-label="Лайкнуть"></button>
+                  <button type="button" class="card__like-button" aria-label="Поставить лайк под фотографией"></button>
                 </div>
-              </div>
+              </article>
             </li>
             <li class="elements__element">
-              <div class="card">
+              <article class="card">
                 <img class="card__image" src="https://images.unsplash.com/photo-1658898294566-b3fa4f8241cd" alt="Алтай фотография">
                 <div class="card__body">
                   <h2 class="card__title">Алтай</h2>
-                  <button type="button" class="card__like-button" aria-label="Лайкнуть"></button>
+                  <button type="button" class="card__like-button" aria-label="Поставить лайк под фотографией"></button>
                 </div>
-              </div>
+              </article>
             </li>
             <li class="elements__element">
-              <div class="card">
+              <article class="card">
                 <img class="card__image" src="https://images.unsplash.com/photo-1590414731158-459a3c3d98ca" alt="Сибирь фотография">
                 <div class="card__body">
                   <h2 class="card__title">Сибирь</h2>
-                  <button type="button" class="card__like-button" aria-label="Лайкнуть"></button>
+                  <button type="button" class="card__like-button" aria-label="Поставить лайк под фотографией"></button>
                 </div>
-              </div>
+              </article>
             </li>
           </ul>
         </section>
       </main>
       <footer class="footer">
-        <p lang="en-GB" class="footer__text">&copy; 2020 Mesto Russia</p>
+        <p lang="en" class="footer__text">&copy; 2020 Mesto Russia</p>
       </footer>
       <div class="popup">
         <div class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <button type="button" class="button popup__close-button" aria-label="Закрыть"></button>
+          <button type="button" class="button popup__close-button" aria-label="Закрыть всплывающее окно"></button>
           <form class="popup__form" name="edit-form">
             <input type="text" class="popup__input popup__input_type_name text-input" name="name" placeholder="Введите имя" required>
             <input type="text" class="popup__input popup__input_type_description text-input" name="description" placeholder="Введите описание" required>

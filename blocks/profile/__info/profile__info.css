@@ -6,8 +6,7 @@
   grid-template-columns: 8fr 1fr;
   grid-template-areas: 
     "name edit-button"
-    "description description"
-  ;
+    "description description";
 }
 
 @media screen and (max-width: 618px) {
@@ -17,8 +16,7 @@
     grid-template-columns: 1fr 8fr 1fr;
     grid-template-areas: 
       ". name edit-button"
-      "description description description"
-    ;
+      "description description description";
     gap: 5px 5px;
   }
 }

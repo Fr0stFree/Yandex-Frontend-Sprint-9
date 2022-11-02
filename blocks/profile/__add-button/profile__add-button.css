@@ -2,7 +2,7 @@
   cursor: pointer;
   height: 50px;
   color: rgba(255, 255, 255, 1);
-  border: 2px solid rgba(255, 255, 255, 1) ;
+  border: 2px solid rgba(255, 255, 255, 1);
   border-radius: 2px;
   background: transparent url(../../../images/plus-sign.svg) no-repeat center;
   background-size: 22px 22px;

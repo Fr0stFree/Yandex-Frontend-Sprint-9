@@ -23,78 +23,52 @@
         </section>
         <section class="elements">
           <ul class="elements__element-list">
-            <li class="elements__element">
-              <article class="card">
-                <img class="card__image" src="https://images.unsplash.com/photo-1538819285938-6a9b4eda500b" alt="Карачаевск фотография">
-                <div class="card__body">
-                  <h2 class="card__title">Карачаевск</h2>
-                  <button type="button" class="card__like-button" aria-label="Поставить лайк под фотографией"></button>
-                </div>
-              </article>
-            </li>
-            <li class="elements__element">
-              <article class="card">
-                <img class="card__image" src="https://images.unsplash.com/photo-1521311587563-6a3fb9fbaff7" alt="Эльбрус фотография">
-                <div class="card__body">
-                  <h2 class="card__title">Гора Эльбрус</h2>
-                  <button type="button" class="card__like-button" aria-label="Поставить лайк под фотографией"></button>
-                </div>
-              </article>
-            </li>
-            <li class="elements__element">
-              <article class="card">
-                <img class="card__image" src="https://images.unsplash.com/photo-1556780183-f523058dc29b" alt="Домбай фотография">
-                <div class="card__body">
-                  <h2 class="card__title">Домбай</h2>
-                  <button type="button" class="card__like-button" aria-label="Поставить лайк под фотографией"></button>
-                </div>
-              </article>
-            </li>
-            <li class="elements__element">
-              <article class="card">
-                <img class="card__image" src="https://images.unsplash.com/photo-1602256976419-c82585fe73a7" alt="Байкал фотография">
-                <div class="card__body">
-                  <h2 class="card__title">Озеро Байкал</h2>
-                  <button type="button" class="card__like-button" aria-label="Поставить лайк под фотографией"></button>
-                </div>
-              </article>
-            </li>
-            <li class="elements__element">
-              <article class="card">
-                <img class="card__image" src="https://images.unsplash.com/photo-1658898294566-b3fa4f8241cd" alt="Алтай фотография">
-                <div class="card__body">
-                  <h2 class="card__title">Алтай</h2>
-                  <button type="button" class="card__like-button" aria-label="Поставить лайк под фотографией"></button>
-                </div>
-              </article>
-            </li>
-            <li class="elements__element">
-              <article class="card">
-                <img class="card__image" src="https://images.unsplash.com/photo-1590414731158-459a3c3d98ca" alt="Сибирь фотография">
-                <div class="card__body">
-                  <h2 class="card__title">Сибирь</h2>
-                  <button type="button" class="card__like-button" aria-label="Поставить лайк под фотографией"></button>
-                </div>
-              </article>
-            </li>
+            <noscript>Картинки должны быть тут, но их нет :(</noscript>
           </ul>
         </section>
       </main>
       <footer class="footer">
         <p lang="en" class="footer__text">&copy; 2020 Mesto Russia</p>
       </footer>
+    </div>
+    <template id="popup-template">
       <div class="popup">
         <div class="popup__container">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <button type="button" class="button popup__close-button" aria-label="Закрыть всплывающее окно редактирования пользовательской информации"></button>
-          <form class="popup__form" name="edit-form">
-            <input type="text" class="popup__input popup__input_type_name text-input" name="name" placeholder="Введите имя" required>
-            <input type="text" class="popup__input popup__input_type_description text-input" name="description" placeholder="Введите описание" required>
-            <button type="submit" class="popup__input popup__input_type_submit">Сохранить</button>
-          </form>
+          <button type="button" class="button popup__close-button" aria-label="Закрыть всплывающее окно редактирования формы"></button>
+          <div class="popup__form">
+            <h2 class="popup__title"></h2>
+            <form name="edit-form">
+              <input type="text" class="popup__input popup__input_field-one text-input" required>
+              <input type="text" class="popup__input popup__input_field-two text-input" required>
+              <button type="submit" class="popup__input popup__input_type_submit">Сохранить</button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </template>
+    <template id="popup-image-template">
+      <div class="popup image-popup">
+        <div class="popup__container">
+          <button type="button" class="button popup__close-button" aria-label="Отдалить фотографию"></button>
+          <figure class="popup__figure">
+            <img class="popup__image" alt="Фотография прекрасного места">
+            <figcaption class="popup__image-caption"></figcaption>
+          </figure>
+        </div>
+      </div>
+    </template>
+    <template id="card-template">
+      <li class="elements__element">
+        <article class="card">
+          <img class="card__image" alt="Фотография прекрасного места">
+          <button type="button" class="button card__remove-button" aria-label="Удалить фотографию"></button>
+          <div class="card__body">
+            <h2 class="card__title"></h2>
+            <button type="button" class="button card__like-button" aria-label="Поставить лайк под фотографией"></button>
+          </div>
+        </article>
+      </li>
+    </template>
     <script src="./scripts/script.js" defer></script>
   </body>
 </html>

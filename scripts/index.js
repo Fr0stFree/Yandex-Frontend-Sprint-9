@@ -67,9 +67,7 @@ profilePopup.addEventListener('submit', evt => {
 // Слушатель события на кнопку сохранения новой карточки
 cardPopup.addEventListener('submit', evt => {
   evt.preventDefault();
-  const cardTitle = cardPlaceInputElement.value;
-  const cardLink = cardLinkInputElement.value;
-  renderCard(createCard(cardTitle, cardLink), false);
+  renderCard(createCard(cardPlaceInputElement.value, cardLinkInputElement.value), false);
   closePopup(cardPopup);
 });
 

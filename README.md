@@ -14,4 +14,3 @@
 2. [CSS](https://ru.wikipedia.org/wiki/CSS)
 3. [JavaScript](https://ru.wikipedia.org/wiki/JavaScript)
 4. [Inter Fonts](https://rsms.me/inter/)
----

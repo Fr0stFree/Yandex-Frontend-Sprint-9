@@ -4,7 +4,7 @@ const validationElementsData = {
   inputErrorClass: 'popup__input_type_error',
   inactiveButtonClass: 'popup__input_type_submit-disabled',
   errorClass: 'popup__input-error_active'
-}
+};
 
 // Функция показа ошибки валидации поля
 const showInputError = (input, inputErrorClass, errorClass) => {
@@ -38,7 +38,7 @@ const toggleButtonState = (button, isValid, inactiveButtonClass) => {
     button.classList.add(inactiveButtonClass);
     button.setAttribute('disabled', true);
   }
-}
+};
 
 // Функция установки слушателей на форму
 const setFormListeners = (form, submitButtonSelector, inputErrorClass, inactiveButtonClass, errorClass)  => form.addEventListener('input', event => {
@@ -52,6 +52,6 @@ const enableValidation = ({formSelector, submitButtonSelector, inputErrorClass, 
     setFormListeners(form, submitButtonSelector, inputErrorClass, inactiveButtonClass, errorClass);
     toggleButtonState(form.querySelector(submitButtonSelector), isFormValid(form), inactiveButtonClass);
   });
-}
+};
 
 enableValidation(validationElementsData);

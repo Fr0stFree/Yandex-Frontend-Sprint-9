@@ -46,13 +46,13 @@ const closeByEscape = (evt, popup) => evt.key === 'Escape' && closePopup(popup);
 const openPopup = popup => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', evt => closeByEscape(evt, popup));
-}
+};
 
 // Функция закрытия попапа
 const closePopup = popup => {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', evt => closeByEscape(evt, popup));
-}
+};
 
 // Слушатели событий на закрытие попапов при клике на оверлей или по крестику.
 document.querySelectorAll('.popup')

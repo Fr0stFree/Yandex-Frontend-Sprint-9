@@ -34,9 +34,13 @@
           <button type="button" class="button popup__close-button" aria-label="Закрыть всплывающее окно редактирования профиля"></button>
           <div class="popup__form">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form name="edit-form">
-              <input type="text" class="popup__input popup__input_type_name text-input" name="name" placeholder="Введите имя" required>
-              <input type="text" class="popup__input popup__input_type_description text-input" name="description" placeholder="Введите описание" required>
+            <form class="popup__base-form" name="edit-form">
+              <input id="name-input" type="text" class="popup__input popup__input_type_name text-input"
+                     name="name" placeholder="Введите имя" required minlength="2" maxlength="40">
+              <span class="popup__input-error name-input-error"></span>
+              <input id="description-input" class="popup__input popup__input_type_description text-input"
+                     name="description" placeholder="Введите описание" required type="text" minlength="2" maxlength="200">
+              <span class="popup__input-error description-input-error"></span>
               <button type="submit" class="popup__input popup__input_type_submit">Сохранить</button>
             </form>
           </div>
@@ -44,12 +48,17 @@
       </div>
       <div class="popup popup_type_card">
         <div class="popup__container">
-          <button type="button" class="button popup__close-button" aria-label="Закрыть всплывающее окно создания карточки"></button>
+          <button aria-label="Закрыть всплывающее окно создания карточки" class="button popup__close-button"
+                  type="button"></button>
           <div class="popup__form">
             <h2 class="popup__title">Новое место</h2>
-            <form name="card-form">
-              <input type="text" class="popup__input popup__input_type_place text-input" name="place" placeholder="Введите название" required>
-              <input type="text" class="popup__input popup__input_type_link text-input" name="link" placeholder="Укажите ссылку" required>
+            <form class="popup__base-form" name="card-form">
+              <input id="place-input" class="popup__input popup__input_type_place text-input"
+                     name="place" placeholder="Введите название" required type="text" minlength="2" maxlength="30">
+              <span class="popup__input-error place-input-error"></span>
+              <input id="link-input" class="popup__input popup__input_type_link text-input"
+                     name="link" placeholder="Укажите ссылку" required type="url">
+              <span class="popup__input-error link-input-error"></span>
               <button type="submit" class="popup__input popup__input_type_submit">Сохранить</button>
             </form>
           </div>
@@ -77,7 +86,8 @@
         </article>
       </li>
     </template>
-    <script src="./scripts/cards.js"></script>
+    <script src="./scripts/cards.js" defer></script>
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validate.js" defer></script>
   </body>
 </html>

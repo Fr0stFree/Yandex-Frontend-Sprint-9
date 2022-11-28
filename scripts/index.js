@@ -17,7 +17,7 @@ const imageZoomedLinkElement = imagePopup.querySelector('.popup__image');
 const imageZoomedCaptionElement = imagePopup.querySelector('.popup__image-caption');
 
 
-// Функция cоздания экземпляра карточки
+// Функция создания экземпляра карточки
 const createCard = (title, link) => {
   const cardElement = cardTemplate.cloneNode(true).content;
   cardElement.querySelector('.card__title').textContent = title;
@@ -43,8 +43,15 @@ const openPopup = popup => popup.classList.add('popup_opened');
 const closePopup = popup => popup.classList.remove('popup_opened');
 
 // Слушатели события на кнопки закрытия попапов
-document.querySelectorAll('.popup__close-button')
-        .forEach(button => button.addEventListener('click', evt => closePopup(evt.target.closest('.popup'))));
+document.querySelectorAll('.popup__close-button').forEach(
+    button => button.addEventListener('click', evt => closePopup(evt.target.closest('.popup'))));
+
+// Слушатели события на закрытие попапов при клике на оверлей.
+document.querySelectorAll('.popup').forEach(
+    popup => popup.addEventListener('click', evt => evt.target.classList.contains('popup') && closePopup(evt.target)));
+
+// Слушатель события на закрытие попапов при нажатии на Esc.
+document.addEventListener('keydown', evt => evt.key === 'Escape' && closePopup(document.querySelector('.popup_opened')));
 
 // Слушатель события на кнопку открытия формы создания новой карточки
 cardAddButton.addEventListener('click', () => openPopup(cardPopup));

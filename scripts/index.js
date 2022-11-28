@@ -83,7 +83,7 @@ cardPopup.addEventListener('submit', evt => {
   evt.preventDefault();
   renderCard(createCard(cardPlaceInputElement.value, cardLinkInputElement.value), false);
   evt.target.reset();
-  toggleButtonState(evt.target.querySelector(validationElementsData.submitButtonSelector), false, validationElementsData.inactiveButtonClass);
+  toggleButtonState(evt.submitter, false, validationElementsData.inactiveButtonClass);
   closePopup(evt.submitter.closest('.popup'));
 });
 

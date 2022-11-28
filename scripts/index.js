@@ -42,23 +42,21 @@ const renderCard = (instance, append=true) => append ? cardList.append(instance)
 // Функция закрытия попапа по Escape
 const closeByEscape = (evt, popup) => evt.key === 'Escape' && closePopup(popup);
 
-// Функции открытия/закрытия попапов
+// Функции открытия попапа
 const openPopup = popup => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', evt => closeByEscape(evt, popup));
 }
 
+// Функция закрытия попапа
 const closePopup = popup => {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', evt => closeByEscape(evt, popup));
 }
 
-// Слушатели события на закрытие попапов при клике на оверлей или по крестику.
+// Слушатели событий на закрытие попапов при клике на оверлей или по крестику.
 document.querySelectorAll('.popup')
         .forEach(popup => popup.addEventListener('mousedown', evt => (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) && closePopup(evt.target.closest('.popup'))));
-
-// Слушатель события на закрытие попапов при нажатии на Esc.
-// document.addEventListener('keydown', evt => evt.key === 'Escape' && closePopup(document.querySelector('.popup_opened')));
 
 // Слушатель события на кнопку открытия формы создания новой карточки
 cardAddButton.addEventListener('click', () => openPopup(cardPopup));

@@ -1,3 +1,11 @@
+const validationElementsData = {
+  formSelector: '.popup__base-form',
+  submitButtonSelector: '.popup__input_type_submit',
+  inputErrorClass: 'popup__input_type_error',
+  inactiveButtonClass: 'popup__input_type_submit-disabled',
+  errorClass: 'popup__input-error_active'
+}
+
 // Функция показа ошибки валидации поля
 const showInputError = (input, inputErrorClass, errorClass) => {
   const errorElement = document.querySelector(`.${input.id}-error`);
@@ -15,7 +23,8 @@ const hideInputError = (input, inputErrorClass, errorClass) => {
 };
 
 // Функция валидации поля
-const validateInput = (input, ...args) => input.validity.valid ? hideInputError(input, ...args) : showInputError(input, ...args);
+const validateInput = (input, ...args) => input.validity.valid ? hideInputError(input, ...args)
+                                                               : showInputError(input, ...args);
 
 // Функция проверки формы на валидность
 const isFormValid = form => Array.from(form.elements).every(input => input.validity.valid);
@@ -39,13 +48,10 @@ const setFormListeners = (form, submitButtonSelector, inputErrorClass, inactiveB
 
 const enableValidation = ({formSelector, submitButtonSelector, inputErrorClass, inactiveButtonClass, errorClass}) => {
   const forms = Array.from(document.querySelectorAll(formSelector));
-  forms.forEach(form => setFormListeners(form, submitButtonSelector, inputErrorClass, inactiveButtonClass, errorClass));
+  forms.forEach(form => {
+    setFormListeners(form, submitButtonSelector, inputErrorClass, inactiveButtonClass, errorClass);
+    toggleButtonState(form.querySelector(submitButtonSelector), isFormValid(form), inactiveButtonClass);
+  });
 }
 
-enableValidation({
-  formSelector: '.popup__base-form',
-  submitButtonSelector: '.popup__input_type_submit',
-  inputErrorClass: 'popup__input_type_error',
-  inactiveButtonClass: 'popup__input_type_submit-disabled',
-  errorClass: 'popup__input-error_active'
-});
+enableValidation(validationElementsData);

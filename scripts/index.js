@@ -21,13 +21,14 @@ const imageZoomedCaptionElement = imagePopup.querySelector('.popup__image-captio
 const createCard = (title, link) => {
   const cardElement = cardTemplate.cloneNode(true).content;
   cardElement.querySelector('.card__title').textContent = title;
-  cardElement.querySelector('.card__image').src = link;
-  cardElement.querySelector('.card__image')
-             .addEventListener('click', () => {
-                imageZoomedLinkElement.src = link;
-                imageZoomedCaptionElement.textContent = title;
-                openPopup(imagePopup);
-             });
+  const imageElement = cardElement.querySelector('.card__image');
+  imageElement.src = link;
+  imageElement.alt = title;
+  imageElement.addEventListener('click', () => {
+    imageZoomedLinkElement.src = link;
+    imageZoomedCaptionElement.textContent = title;
+    openPopup(imagePopup);
+  });
   cardElement.querySelector('.card__remove-button')
              .addEventListener('click', evt => evt.target.closest('.elements__element').remove());
   cardElement.querySelector('.card__like-button')
@@ -38,20 +39,26 @@ const createCard = (title, link) => {
 // Функция рендеринга карточки в DOM
 const renderCard = (instance, append=true) => append ? cardList.append(instance) : cardList.prepend(instance);
 
+// Функция закрытия попапа по Escape
+const closeByEscape = (evt, popup) => evt.key === 'Escape' && closePopup(popup);
+
 // Функции открытия/закрытия попапов
-const openPopup = popup => popup.classList.add('popup_opened');
-const closePopup = popup => popup.classList.remove('popup_opened');
+const openPopup = popup => {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', evt => closeByEscape(evt, popup));
+}
 
-// Слушатели события на кнопки закрытия попапов
-document.querySelectorAll('.popup__close-button').forEach(
-    button => button.addEventListener('click', evt => closePopup(evt.target.closest('.popup'))));
+const closePopup = popup => {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', evt => closeByEscape(evt, popup));
+}
 
-// Слушатели события на закрытие попапов при клике на оверлей.
-document.querySelectorAll('.popup').forEach(
-    popup => popup.addEventListener('click', evt => evt.target.classList.contains('popup') && closePopup(evt.target)));
+// Слушатели события на закрытие попапов при клике на оверлей или по крестику.
+document.querySelectorAll('.popup')
+        .forEach(popup => popup.addEventListener('mousedown', evt => (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) && closePopup(evt.target.closest('.popup'))));
 
 // Слушатель события на закрытие попапов при нажатии на Esc.
-document.addEventListener('keydown', evt => evt.key === 'Escape' && closePopup(document.querySelector('.popup_opened')));
+// document.addEventListener('keydown', evt => evt.key === 'Escape' && closePopup(document.querySelector('.popup_opened')));
 
 // Слушатель события на кнопку открытия формы создания новой карточки
 cardAddButton.addEventListener('click', () => openPopup(cardPopup));
@@ -68,14 +75,16 @@ profilePopup.addEventListener('submit', evt => {
   evt.preventDefault();
   profileNameElement.textContent = profileNameInputElement.value;
   profileDescriptionElement.textContent = profileDescriptionInputElement.value;
-  closePopup(profilePopup);
+  closePopup(evt.submitter.closest('.popup'));
 });
 
 // Слушатель события на кнопку сохранения новой карточки
 cardPopup.addEventListener('submit', evt => {
   evt.preventDefault();
   renderCard(createCard(cardPlaceInputElement.value, cardLinkInputElement.value), false);
-  closePopup(cardPopup);
+  evt.target.reset();
+  toggleButtonState(evt.target.querySelector(validationElementsData.submitButtonSelector), false, validationElementsData.inactiveButtonClass);
+  closePopup(evt.submitter.closest('.popup'));
 });
 
 // Рендеринг исходных карточек

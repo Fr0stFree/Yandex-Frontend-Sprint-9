@@ -26,6 +26,7 @@ const createCard = (title, link) => {
   imageElement.alt = title;
   imageElement.addEventListener('click', () => {
     imageZoomedLinkElement.src = link;
+    imageZoomedLinkElement.alt = title;
     imageZoomedCaptionElement.textContent = title;
     openPopup(imagePopup);
   });
@@ -37,26 +38,27 @@ const createCard = (title, link) => {
 };
 
 // Функция рендеринга карточки в DOM
-const renderCard = (instance, append=true) => append ? cardList.append(instance) : cardList.prepend(instance);
+const renderCard = (instance, append=true) => append ? cardList.append(instance)
+                                                             : cardList.prepend(instance);
 
 // Функция закрытия попапа по Escape
-const closeByEscape = (evt, popup) => evt.key === 'Escape' && closePopup(popup);
+const closeByEscape = evt => evt.key === 'Escape' && closePopup(document.querySelector('.popup_opened'));
 
 // Функции открытия попапа
 const openPopup = popup => {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', evt => closeByEscape(evt, popup));
+  document.addEventListener('keydown', closeByEscape);
 };
 
 // Функция закрытия попапа
 const closePopup = popup => {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', evt => closeByEscape(evt, popup));
+  document.removeEventListener('keydown', closeByEscape);
 };
 
 // Слушатели событий на закрытие попапов при клике на оверлей или по крестику.
 document.querySelectorAll('.popup')
-        .forEach(popup => popup.addEventListener('mousedown', evt => (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) && closePopup(evt.target.closest('.popup'))));
+        .forEach(popup => popup.addEventListener('mousedown', evt => (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) && closePopup(popup)));
 
 // Слушатель события на кнопку открытия формы создания новой карточки
 cardAddButton.addEventListener('click', () => openPopup(cardPopup));

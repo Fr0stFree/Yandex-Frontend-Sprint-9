@@ -10,32 +10,12 @@ const cardPopup = document.querySelector('.popup_type_card');
 const cardPlaceInputElement = cardPopup.querySelector('.popup__input_type_place');
 const cardLinkInputElement = cardPopup.querySelector('.popup__input_type_link');
 const cardList = document.querySelector('.elements__element-list');
-const cardTemplate = document.querySelector('#card-template');
 
 const imagePopup = document.querySelector('.popup_type_image');
 const imageZoomedLinkElement = imagePopup.querySelector('.popup__image');
 const imageZoomedCaptionElement = imagePopup.querySelector('.popup__image-caption');
 
 
-// Функция создания экземпляра карточки
-const createCard = (title, link) => {
-  const cardElement = cardTemplate.cloneNode(true).content;
-  cardElement.querySelector('.card__title').textContent = title;
-  const imageElement = cardElement.querySelector('.card__image');
-  imageElement.src = link;
-  imageElement.alt = title;
-  imageElement.addEventListener('click', () => {
-    imageZoomedLinkElement.src = link;
-    imageZoomedLinkElement.alt = title;
-    imageZoomedCaptionElement.textContent = title;
-    openPopup(imagePopup);
-  });
-  cardElement.querySelector('.card__remove-button')
-             .addEventListener('click', evt => evt.target.closest('.elements__element').remove());
-  cardElement.querySelector('.card__like-button')
-             .addEventListener('click', evt => evt.target.classList.toggle('card__like-button_active'));
-  return cardElement;
-};
 
 // Функция рендеринга карточки в DOM
 const renderCard = (instance, append=true) => append ? cardList.append(instance)
@@ -58,7 +38,10 @@ const closePopup = popup => {
 
 // Слушатели событий на закрытие попапов при клике на оверлей или по крестику.
 document.querySelectorAll('.popup')
-        .forEach(popup => popup.addEventListener('mousedown', evt => (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) && closePopup(popup)));
+  .forEach(popup =>
+    popup.addEventListener('mousedown', evt =>
+      (evt.target.classList.contains('popup_opened') ||
+        evt.target.classList.contains('popup__close-button')) && closePopup(popup)));
 
 // Слушатель события на кнопку открытия формы создания новой карточки
 cardAddButton.addEventListener('click', () => openPopup(cardPopup));

@@ -1,14 +1,17 @@
-const cardTemplate = document.querySelector('#card-template');
-
+const imagePopup = document.querySelector('.popup_type_image');
+const imageZoomedLinkElement = imagePopup.querySelector('.popup__image');
+const imageZoomedCaptionElement = imagePopup.querySelector('.popup__image-caption');
 
 class Card {
-  constructor(title, link) {
-    this._title = title;
-    this._link = link;
+  constructor(data, cardTemplateSelector) {
+    this._title = data.title;
+    this._link = data.link;
+    this._cardTemplateSelector = cardTemplateSelector;
   }
 
-  createCard() {
-    this._cardElement = cardTemplate.cloneNode(true).content;
+  buildElement() {
+    this._cardElement = document.querySelector(this._cardTemplateSelector)
+                                .content.cloneNode(true);
     this._cardTitle = this._cardElement.querySelector('.card__title');
     this._cardImage = this._cardElement.querySelector('.card__image');
     this._cardTitle.textContent = this._title;
@@ -19,14 +22,11 @@ class Card {
   }
 
   _setEventListeners() {
-    this._cardImage.addEventListener('click', () => {
-      this._handleCardClick();
-    });
-    this._cardElement.querySelector('.card__delete-button')
-      .addEventListener('click', () => this._handleDeleteClick);
+    this._cardImage.addEventListener('click', () => this._handleCardClick());
+    this._cardElement.querySelector('.card__remove-button')
+                     .addEventListener('click', evt => this._handleDeleteClick(evt));
     this._cardElement.querySelector('.card__like-button')
-      .addEventListener('click', evt => this._handleLikeClick(evt));
-
+                     .addEventListener('click', evt => this._handleLikeClick(evt));
   }
 
   _handleCardClick() {
@@ -36,11 +36,13 @@ class Card {
     openPopup(imagePopup);
   }
 
-  _handleDeleteClick() {
-    this._cardElement.remove();
+  _handleDeleteClick(evt) {
+    evt.target.closest('.elements__element').remove();
   }
 
   _handleLikeClick(evt) {
     evt.target.classList.toggle('card__like-button_active');
   }
 }
+
+export default Card;

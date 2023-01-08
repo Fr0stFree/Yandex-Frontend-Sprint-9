@@ -1,12 +1,9 @@
-const imagePopup = document.querySelector('.popup_type_image');
-const imageZoomedLinkElement = imagePopup.querySelector('.popup__image');
-const imageZoomedCaptionElement = imagePopup.querySelector('.popup__image-caption');
-
 class Card {
-  constructor(data, cardTemplateSelector) {
+  constructor(data, cardTemplateSelector, handleCardClick) {
     this._title = data.title;
     this._link = data.link;
     this._cardTemplateSelector = cardTemplateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   buildElement() {
@@ -22,18 +19,11 @@ class Card {
   }
 
   _setEventListeners() {
-    this._cardImage.addEventListener('click', () => this._handleCardClick());
+    this._cardImage.addEventListener('click', () => this._handleCardClick(this._title, this._link));
     this._cardElement.querySelector('.card__remove-button')
                      .addEventListener('click', evt => this._handleDeleteClick(evt));
     this._cardElement.querySelector('.card__like-button')
                      .addEventListener('click', evt => this._handleLikeClick(evt));
-  }
-
-  _handleCardClick() {
-    imageZoomedLinkElement.src = this._link;
-    imageZoomedLinkElement.alt = this._title;
-    imageZoomedCaptionElement.textContent = this._title;
-    openPopup(imagePopup);
   }
 
   _handleDeleteClick(evt) {

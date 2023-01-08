@@ -17,6 +17,11 @@ const cardAddButton = document.querySelector('.profile__add-button');
 const cardPlaceInputElement = cardPopup.querySelector('.popup__input_type_place');
 const cardLinkInputElement = cardPopup.querySelector('.popup__input_type_link');
 const cardList = document.querySelector('.elements__element-list');
+
+const imagePopup = document.querySelector('.popup_type_image');
+const imageZoomedLinkElement = imagePopup.querySelector('.popup__image');
+const imageZoomedCaptionElement = imagePopup.querySelector('.popup__image-caption');
+
 const initialCards = [
   {
     name: 'Карачаевск',
@@ -79,7 +84,10 @@ document.querySelectorAll('.popup')
               evt.target.classList.contains('popup__close-button')) && closePopup(popup)));
 
 // Слушатель события на кнопку открытия формы создания новой карточки
-cardAddButton.addEventListener('click', () => openPopup(cardPopup));
+cardAddButton.addEventListener('click', () => {
+  cardFormValidator.resetValidation();
+  openPopup(cardPopup);
+});
 
 // Слушатель события на кнопку редактирования данных профиля
 profileEditButton.addEventListener('click', () => {
@@ -96,29 +104,28 @@ profilePopup.addEventListener('submit', evt => {
   closePopup(evt.submitter.closest('.popup'));
 });
 
+// Функция создания карточки
+const createCard = (title, link, template) => new Card({title, link}, template, handleCardClick).buildElement();
+
+// Коллбек на клик по карточке
+const handleCardClick = (title, link) => {
+  imageZoomedLinkElement.src = link;
+  imageZoomedLinkElement.alt = title;
+  imageZoomedCaptionElement.textContent = title;
+  openPopup(imagePopup);
+};
+
 // Слушатель события на кнопку сохранения новой карточки
 cardPopup.addEventListener('submit', evt => {
   evt.preventDefault();
-  const cardObj = new Card({name: cardPlaceInputElement.value, link: cardLinkInputElement.value},
-                           baseCardTemplateSelector);
-  renderCard(cardObj.buildElement(), false);
-  evt.target.reset();
-  _resetButton(evt);
+  renderCard(createCard(cardPlaceInputElement.value, cardLinkInputElement.value,
+                        baseCardTemplateSelector), false);
+  cardFormValidator.resetValidation();
   closePopup(evt.submitter.closest('.popup'));
 });
 
-// Вспомогательная функция для сброса состояния кнопки
-const _resetButton = evt => {
-  const button = evt.target.querySelector(validationConfig.submitButtonSelector);
-  button.classList.add(validationConfig.inactiveButtonClass);
-  button.setAttribute('disabled', true);
-}
-
 // Рендеринг исходных карточек
-initialCards.forEach(card => {
-  const cardObj = new Card({name: card.name, link: card.link}, baseCardTemplateSelector);
-  renderCard(cardObj.buildElement());
-});
+initialCards.forEach(card => renderCard(createCard(card.name, card.link, baseCardTemplateSelector)));
 
 // Создание экземпляров валидатора для каждой формы и их активация
 const profileFormValidator = new FormValidator(validationConfig, profileForm);

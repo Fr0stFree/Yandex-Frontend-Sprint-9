@@ -1,7 +1,7 @@
-class Card {
-  constructor(data, cardTemplateSelector, handleCardClick) {
-    this._title = data.title;
-    this._link = data.link;
+export default class Card {
+  constructor({title, link}, cardTemplateSelector, handleCardClick) {
+    this._title = title;
+    this._link = link;
     this._cardTemplateSelector = cardTemplateSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -35,4 +35,3 @@ class Card {
   }
 }
 
-export default Card;

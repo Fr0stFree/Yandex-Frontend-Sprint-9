@@ -1,0 +1,37 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "Проект \"Mesto\" - однострочный сайт написанный с помощью HTML, CSS и JavaScript по методологии БЭМ.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fr0stFree/Mesto.git"
+  },
+  "author": "Danila KRasov",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "autoprefixer": "^10.4.13",
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.3",
+    "cssnano": "^5.1.14",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.2",
+    "postcss-loader": "^7.0.2",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "bugs": {
+    "url": "https://github.com/Fr0stFree/Mesto/issues"
+  },
+  "homepage": "https://github.com/Fr0stFree/Mesto#readme",
+  "dependencies": {
+    "core-js": "^3.27.2"
+  }
+}

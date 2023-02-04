@@ -1,4 +1,4 @@
-class FormValidator {
+export default class FormValidator {
   constructor(configData, formElement) {
     this._formElement = formElement;
     this._submitButton = formElement.querySelector(configData.submitButtonSelector);
@@ -13,7 +13,6 @@ class FormValidator {
   }
 
   resetValidation() {
-    this._formElement.reset();
     this._toggleButtonState();
     Array.from(this._formElement.elements).forEach(input => this._hideInputError(input));
   }
@@ -58,6 +57,3 @@ class FormValidator {
     input.classList.remove(this._inputErrorClass);
   }
 }
-
-
-export default FormValidator;

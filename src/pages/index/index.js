@@ -12,11 +12,13 @@ import './index.css';
 const profileEditButton = document.querySelector('.profile__edit-button');
 const cardAddButton = document.querySelector('.profile__add-button');
 
+
 // Селекторы
 const cardListSelector = '.elements__element-list';
 const baseCardTemplateSelector = '#card-template';
 const cardPopupSelector = '.popup_type_card';
 const profilePopupSelector = '.popup_type_profile';
+const confirmPopupSelector = '.popup_type_confirm';
 const profileNameElementSelector = '.profile__name';
 const profileDescriptionElementSelector = '.profile__description';
 const imagePopupSelector = '.popup_type_image';
@@ -38,7 +40,14 @@ const validationConfig = {
 };
 
 // Функция создания экземпляра карточки
-const createCard = data => new Card(data, baseCardTemplateSelector, () => imagePopup.open(data));
+const createCard = data => new Card(data, baseCardTemplateSelector,{
+  handleCardClick: evt => imagePopup.open(data),
+  handleDeleteClick: () => cardRemovingConfirmationPopup.open(),
+  handleLikeClick: () => {}
+});
+
+// Попап для подтверждения удаления карточки
+const cardRemovingConfirmationPopup = new PopupWithForm(confirmPopupSelector, () => cardRemovingConfirmationPopup.close());
 
 // Попап для увеличения изображения
 const imagePopup = new PopupWithImage(imagePopupSelector);
@@ -73,7 +82,7 @@ const cardPopup = new PopupWithForm(cardPopupSelector, data => {
 cardSection.renderItems();
 
 // Установка слушателей на попапы и кнопки
-[profilePopup, cardPopup, imagePopup].forEach(popup => popup.setEventListeners());
+[profilePopup, cardPopup, imagePopup, cardRemovingConfirmationPopup].forEach(popup => popup.setEventListeners());
 cardAddButton.addEventListener('click', () => {
   cardFormValidator.resetValidation();
   cardPopup.open();

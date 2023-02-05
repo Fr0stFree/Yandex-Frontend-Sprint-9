@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/Fr0stFree/Mesto#readme",
   "dependencies": {
-    "core-js": "^3.27.2"
+    "core-js": "^3.27.2",
+    "webpack": "^5.64.4"
   }
 }

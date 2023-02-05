@@ -1,11 +1,11 @@
-import Card from './components/Card.js';
-import FormValidator from './components/Validator.js';
-import Section from './components/Section.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import UserInfo from './components/UserInfo.js';
-import cards from './pages/index/cards.js';
-import './pages/index/index.css';
+import Card from '../../components/Card.js';
+import FormValidator from '../../components/Validator.js';
+import Section from '../../components/Section.js';
+import PopupWithForm from '../../components/PopupWithForm.js';
+import PopupWithImage from '../../components/PopupWithImage.js';
+import UserInfo from '../../components/UserInfo.js';
+import cards from './cards.js';
+import './index.css';
 
 
 // Кнопки

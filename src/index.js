@@ -1,11 +1,12 @@
-import Card from './js/Card.js';
-import FormValidator from './js/Validator.js';
-import Section from './js/Section.js';
-import PopupWithForm from './js/PopupWithForm.js';
-import PopupWithImage from './js/PopupWithImage.js';
-import UserInfo from './js/UserInfo.js';
-import cards from './js/cards.js';
-import './index.css';
+import Card from './components/Card.js';
+import FormValidator from './components/Validator.js';
+import Section from './components/Section.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import PopupWithImage from './components/PopupWithImage.js';
+import UserInfo from './components/UserInfo.js';
+import cards from './pages/index/cards.js';
+import './pages/index/index.css';
+
 
 // Кнопки
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -36,12 +37,8 @@ const validationConfig = {
   errorClass: 'popup__input-error_active'
 };
 
-
 // Функция создания экземпляра карточки
-const createCard = data => {
-  const clickHandler = () => imagePopup.open(data);
-  return new Card(data, baseCardTemplateSelector, clickHandler);
-};
+const createCard = data => new Card(data, baseCardTemplateSelector, () => imagePopup.open(data));
 
 // Попап для увеличения изображения
 const imagePopup = new PopupWithImage(imagePopupSelector);
@@ -61,6 +58,10 @@ const profilePopup = new PopupWithForm(profilePopupSelector, data => {
   profilePopup.close();
 });
 
+// Валидаторы
+const profileFormValidator = new FormValidator(validationConfig, profileForm);
+const cardFormValidator = new FormValidator(validationConfig, cardForm);
+
 // Попап с формой создания новой карточки
 const cardPopup = new PopupWithForm(cardPopupSelector, data => {
   const card = createCard({title: data.place, link: data.link});
@@ -68,20 +69,20 @@ const cardPopup = new PopupWithForm(cardPopupSelector, data => {
   cardPopup.close();
 });
 
-// Валидаторы
-const profileFormValidator = new FormValidator(validationConfig, profileForm);
-const cardFormValidator = new FormValidator(validationConfig, cardForm);
-
 // Рендеринг карточек
 cardSection.renderItems();
 
 // Установка слушателей на попапы и кнопки
 [profilePopup, cardPopup, imagePopup].forEach(popup => popup.setEventListeners());
-cardAddButton.addEventListener('click', () => cardPopup.open())
+cardAddButton.addEventListener('click', () => {
+  cardFormValidator.resetValidation();
+  cardPopup.open();
+})
 profileEditButton.addEventListener('click', () => {
   const {name, description} = user.getUserInfo();
   profileNameInputElement.value = name;
   profileDescriptionInputElement.value = description;
+  profileFormValidator.resetValidation();
   profilePopup.open();
 });
 

@@ -19,8 +19,8 @@ export default class FormValidator {
 
   _setFormListeners() {
     this._formElement.addEventListener('input', event => {
-      this._toggleButtonState();
       this._checkInputValidityAndRiseError(event.target);
+      this._toggleButtonState();
     });
   }
 

@@ -3,8 +3,9 @@ import FormValidator from '../../components/Validator.js';
 import Section from '../../components/Section.js';
 import PopupWithForm from '../../components/PopupWithForm.js';
 import PopupWithImage from '../../components/PopupWithImage.js';
+import PopupWithConfirmation from "../../components/PopupWithConfirmation";
 import UserInfo from '../../components/UserInfo.js';
-import cards from './cards.js';
+import Api from '../../components/Api.js';
 import './index.css';
 
 
@@ -19,8 +20,9 @@ const baseCardTemplateSelector = '#card-template';
 const cardPopupSelector = '.popup_type_card';
 const profilePopupSelector = '.popup_type_profile';
 const confirmPopupSelector = '.popup_type_confirm';
-const profileNameElementSelector = '.profile__name';
-const profileDescriptionElementSelector = '.profile__description';
+const nameElementSelector = '.profile__name';
+const aboutElementSelector = '.profile__description';
+const avatarElementSelector = '.profile__avatar';
 const imagePopupSelector = '.popup_type_image';
 
 // Элементы
@@ -39,32 +41,79 @@ const validationConfig = {
   errorClass: 'popup__input-error_active'
 };
 
-// Функция создания экземпляра карточки
-const createCard = data => new Card(data, baseCardTemplateSelector,{
-  handleCardClick: evt => imagePopup.open(data),
-  handleDeleteClick: () => cardRemovingConfirmationPopup.open(),
-  handleLikeClick: () => {}
-});
+const praktikumApi = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-58',
+  headers: {
+    "Content-Type": "application/json",
+    "authorization": "8a10ae20-3876-4243-a54a-b307b1f8ac17"
+  }
+})
 
-// Попап для подтверждения удаления карточки
-const cardRemovingConfirmationPopup = new PopupWithForm(confirmPopupSelector, () => cardRemovingConfirmationPopup.close());
+// Класс для работы с полями пользователя
+const profile = new UserInfo({nameElementSelector, aboutElementSelector, avatarElementSelector});
+
+const cardLikeClickHandler = card => {
+  if (card.isLiked) {
+    praktikumApi.dislikeCard(card.data)
+      .then(() => card.dislike())
+      .catch(err => console.log(err));
+  } else {
+    praktikumApi.likeCard(card.data)
+      .then(() => card.like())
+      .catch(err => console.log(err));
+  }
+}
+
+const cardDeleteClickHandler = card => {
+  const confirmPopup = new PopupWithConfirmation(confirmPopupSelector, card.data, () => {
+    // confirmPopup.renderLoading(true);
+    cardSection.removeItem(card);
+    // praktikumApi.deleteCard(card.data)
+    //   .then(() => {
+    //     cardSection.removeItem(card);
+    //     confirmPopup.close();
+    //   })
+    //   .catch(err => console.log(err));
+      // .finally(() => confirmPopup.renderLoading(false));
+  });
+  confirmPopup.setEventListeners();
+  confirmPopup.open();
+}
+
+
+// Функция создания экземпляра карточки
+const createCard = data => {
+  const is_deletable = data.owner._id === profile.info.id;
+  const card = new Card(data, baseCardTemplateSelector, is_deletable, {
+    handleCardClick: () => imagePopup.open(card.data),
+    handleLikeClick: () => cardLikeClickHandler(card),
+    handleDeleteClick: () => cardDeleteClickHandler(card)
+  });
+  return card;
+}
 
 // Попап для увеличения изображения
 const imagePopup = new PopupWithImage(imagePopupSelector);
 
 // Секция с карточками
 const cardSection = new Section(
-  {items: cards, renderer: item => cardSection.addItem(createCard(item).buildElement())},
+  {
+    items: [],
+    renderer: item => this.addItem(createCard(item).buildElement())
+  },
   cardListSelector
 );
 
-// Класс для работы с полями пользователя
-const user = new UserInfo({nameSelector: profileNameElementSelector, descriptionSelector: profileDescriptionElementSelector});
-
 // Попап с формой редактирования данных профиля
 const profilePopup = new PopupWithForm(profilePopupSelector, data => {
-  user.setUserInfo(data);
-  profilePopup.close();
+  profilePopup.renderLoading(true);
+  praktikumApi.editUserInfo({name: data.name, about: data.description})
+    .then(resp => {
+      profile.setInfo(resp);
+      profilePopup.close();
+    })
+    .catch(err => console.log(err))
+    .finally(() => profilePopup.renderLoading(false));
 });
 
 // Валидаторы
@@ -73,24 +122,36 @@ const cardFormValidator = new FormValidator(validationConfig, cardForm);
 
 // Попап с формой создания новой карточки
 const cardPopup = new PopupWithForm(cardPopupSelector, data => {
-  const card = createCard({title: data.place, link: data.link});
-  cardSection.addItem(card.buildElement());
-  cardPopup.close();
+  praktikumApi.addCard({name: data.place, link: data.link})
+  .then(resp => {
+    cardSection.addItem(createCard(resp).buildElement());
+    cardPopup.close();
+  })
+  .catch(err => console.log(err));
+
 });
 
-// Рендеринг карточек
-cardSection.renderItems();
+// Загрузка и рендеринг изначальных карточек
+praktikumApi.getInitialCards()
+  .then(cards => cards.forEach(card => cardSection.addItem(createCard(card).buildElement())))
+  .catch(err => console.log(err));
+
+// Загрузка и рендеринг данных профиля
+praktikumApi.getUserInfo()
+  .then(data => profile.setInfo(data))
+  .catch(err => console.log(err));
+
 
 // Установка слушателей на попапы и кнопки
-[profilePopup, cardPopup, imagePopup, cardRemovingConfirmationPopup].forEach(popup => popup.setEventListeners());
+[profilePopup, cardPopup, imagePopup].forEach(popup => popup.setEventListeners());
 cardAddButton.addEventListener('click', () => {
   cardFormValidator.resetValidation();
   cardPopup.open();
 })
 profileEditButton.addEventListener('click', () => {
-  const {name, description} = user.getUserInfo();
+  const {name, about} = profile.info;
   profileNameInputElement.value = name;
-  profileDescriptionInputElement.value = description;
+  profileDescriptionInputElement.value = about;
   profileFormValidator.resetValidation();
   profilePopup.open();
 });

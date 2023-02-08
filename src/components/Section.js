@@ -13,4 +13,9 @@ export default class Section {
     addItem(element) {
         this._container.prepend(element);
     }
+
+    removeItem(element) {
+      // iterate and console log each element in container
+      console.log(this._container.children);
+    }
 }

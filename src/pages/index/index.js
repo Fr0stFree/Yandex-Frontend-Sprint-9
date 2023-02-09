@@ -129,6 +129,7 @@ praktikumApi.getUserInfo()
 // Установка слушателей на попапы и кнопки
 [profilePopup, cardPopup, imagePopup, confirmPopup, avatarPopup].forEach(popup => popup.setEventListeners());
 avatarUpdateButton.addEventListener('click', () => {
+  avatarFormValidator.resetValidation();
   avatarPopup.open();
 });
 cardAddButton.addEventListener('click', () => {

@@ -22,6 +22,7 @@ export default class Popup {
         });
     }
 
+
     _handleEscClose(evt) {
         evt.key === 'Escape' && this.close();
     }

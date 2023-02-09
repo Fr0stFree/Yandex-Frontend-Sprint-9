@@ -12,7 +12,9 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img class="profile__avatar" src="<%=require('../../images/Jack-Iv-Kusto.svg')%>" alt="Фотография пользователя">
+          <button type="button" class="button profile__avatar-button" aria-label="Изменить аватар">
+            <img class="profile__avatar" src="<%=require('../../images/Jack-Iv-Kusto.svg')%>" alt="Фотография пользователя">
+          </button>
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button type="button" class="button profile__edit-button" aria-label="Редактировать пользовательскую информацию"></button>
@@ -35,6 +37,20 @@
             <h2 class="popup__title">Вы уверены?</h2>
             <form class="popup__confirm-form" name="confirm-form">
               <button type="submit" class="popup__input popup__input_type_submit">Да</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="popup popup_type_avatar">
+        <div class="popup__container">
+          <button type="button" class="button popup__close-button" aria-label="Закрыть всплывающее окно изменения аватара"></button>
+          <div class="popup__form">
+            <h2 class="popup__title">Обновить аватар</h2>
+            <form class="popup__avatar-form" name="avatar-form">
+              <input id="avatar-input" class="popup__input popup__input_type_avatar text-input"
+                     name="avatar" placeholder="Укажите ссылку" required type="url">
+              <span class="popup__input-error avatar-input-error"></span>
+              <button type="submit" class="popup__input popup__input_type_submit">Сохранить</button>
             </form>
           </div>
         </div>
@@ -91,7 +107,10 @@
           <button type="button" class="button card__remove-button" aria-label="Удалить фотографию"></button>
           <div class="card__body">
             <h2 class="card__title"></h2>
-            <button type="button" class="button card__like-button" aria-label="Поставить лайк под фотографией"></button>
+            <div class="card__like-container">
+              <button type="button" class="button card__like-button" aria-label="Поставить лайк под фотографией"></button>
+              <p class="card__like-counter"></p>
+            </div>
           </div>
         </article>
       </li>

@@ -20,7 +20,7 @@ export default class Api {
       .then(res => this._checkResponse(res));
   }
 
-  editUserAvatar({avatar}) {
+  updateUserAvatar({avatar}) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
@@ -45,7 +45,7 @@ export default class Api {
       .then(res => this._checkResponse(res));
   }
 
-  deleteCard({id}) {
+  deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
       headers: this._headers
@@ -58,13 +58,15 @@ export default class Api {
       method: 'PUT',
       headers: this._headers
     })
+      .then(res => this._checkResponse(res));
   }
 
-  dislikeCard(id) {
+  dislikeCard({id}) {
     return fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: 'DELETE',
       headers: this._headers
     })
+      .then(res => this._checkResponse(res));
   }
 
   _checkResponse(res) {

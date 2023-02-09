@@ -5,7 +5,7 @@ export default class UserInfo {
       this._avatarElement = document.querySelector(avatarElementSelector);
     }
 
-    setInfo({_id=null, name=this._nameElement.textContent, about=this._aboutElement.textContent, avatar=this._avatarElement.src}) {
+    set info({_id=null, name=this._nameElement.textContent, about=this._aboutElement.textContent, avatar=this._avatarElement.src}) {
       this._id = _id;
       this._nameElement.textContent = name;
       this._aboutElement.textContent = about;

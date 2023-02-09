@@ -15,11 +15,6 @@ export default class Section {
       this._container.prepend(this._renderer(item));
     }
 
-    removeItem(id) {
-      this._items = this._items.filter(item => item._id !== id);
-      this.renderItems();
-    }
-
     set items(items) {
       this._items = items;
     }

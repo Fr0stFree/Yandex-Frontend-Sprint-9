@@ -16,7 +16,7 @@ export default class Card {
 
   buildElement() {
     this._cardElement = document.querySelector(this._cardTemplateSelector)
-      .content.cloneNode(true);
+      .content.querySelector('.card').cloneNode(true);
     this._cardTitle = this._cardElement.querySelector('.card__title');
     this._cardImage = this._cardElement.querySelector('.card__image');
     this._removeButton = this._cardElement.querySelector('.card__remove-button');
@@ -49,7 +49,7 @@ export default class Card {
     if (!this._isDeletable) {
       this._removeButton.remove();
     } else {
-      this._removeButton.addEventListener('click', evt => this._handleDeleteClick(evt));
+      this._removeButton.addEventListener('click', () => this._handleDeleteClick());
     }
   }
 
@@ -62,6 +62,10 @@ export default class Card {
     this._isLiked = likes.some(like => like._id === this._myId);
     this._updateLikeCounterElement();
     this._updateLikeButton();
+  }
+
+  remove() {
+    this._cardElement.remove();
   }
 
   get data() {

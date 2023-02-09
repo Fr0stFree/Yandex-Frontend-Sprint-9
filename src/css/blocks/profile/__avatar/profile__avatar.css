@@ -1,12 +1,10 @@
 .profile__avatar {
   display: block;
   border-radius: 50%;
-  width: 120px;
+  position: absolute;
+  width: 100%;
   aspect-ratio: 1/1;
-}
-
-@media screen and (max-width: 618px) {
-  .profile__avatar {
-    margin-bottom: 28px;
-  }
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
